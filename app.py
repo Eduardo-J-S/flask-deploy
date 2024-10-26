@@ -7,13 +7,11 @@ from controllers.cliente_controller import cliente_bp
 from controllers.pedido_controller import pedido_bp
 from controllers.detalhepedido_controller import detalhePedido_bp
 
-#Função para criar o aplicação
+# Função para criar a aplicação
 def criar_app():
-    #Instância do Flask
+    # Instância do Flask
     app = Flask(__name__)
-
     app.config.from_object(Config)
-
     db.init_app(app)
 
     with app.app_context():
@@ -25,10 +23,10 @@ def criar_app():
     app.register_blueprint(pedido_bp)
     app.register_blueprint(detalhePedido_bp)
 
-    app.run(debug=True)
-    
-#Comparando se é o módulo principal que está em execução (main)
+    return app
+
+# Instância da aplicação
+app = criar_app()
+
 if __name__ == '__main__':
-    app = criar_app()
-
-
+    app.run(debug=True)
